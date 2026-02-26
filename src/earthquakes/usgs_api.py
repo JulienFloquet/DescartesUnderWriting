@@ -167,21 +167,20 @@ async def get_earthquake_data_for_multiple_locations(
 ) -> pd.DataFrame:
     """
     Async wrapper to query multiple locations concurrently by calling
-    the synchronous get_earthquake_data function.
+    the get_earthquake_data function.
 
     Parameters
     ----------
-    latitude : Iterable[Tuple[float, float]]
+    assets : Iterable[Tuple[float, float]]
         Latitude and longitude of the assets.
-    longitude : float
-        Asset longitude.
     minimum_magnitude : float
         Magnitude threshold.
     radius : float
         Search radius in kilometers.
     end_date : datetime
         Maximum date in YYYY-MM-DD format.
-
+    max_concurrent_requests: int
+        max number of requests
 
     Returns
     -------

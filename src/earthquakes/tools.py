@@ -72,7 +72,7 @@ def compute_payouts(
         Must contain the columns:
             - time     : datetime (date event)
             - mag      : float    (magnitude)
-            - depth    : float    (distance from epicenter)
+            - distance : float    (distance from epicenter to asset)
     payout_rules : List[Dict]
         Each dict defines a rule for the payout by the radius and magnitude
 
@@ -94,7 +94,7 @@ def compute_payouts(
         payouts = [
             rule["payout"]
             for rule in payout_rules
-            if row["depth"] <= rule["radius"]
+            if row[DISTANCE_COLUMN] <= rule["radius"]
             and row["mag"] >= rule["magnitude"]
         ]
         return max(payouts) if payouts else 0.0
